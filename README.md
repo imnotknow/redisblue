@@ -3,13 +3,25 @@ Object manager and synchronizer for Redis
 
 ## Synopsis
 
-Why go to the database asynchronously? Let the database update your object in memory when it changes. Currently only works with hashes. It also turns each item into an event emitter.
+Why go to the database asynchronously? Let the database update your object in memory when it changes. It's basically an in-memory db cache that automatically synchronizes updates to the DB.
+
+What this module does:
+
+Retrieves all records in a specified top level namespace returns an array of objects.
+
+Turns each object into an event emitter.
+
+Syncs all changes made to the DB by any means to the objects in memory.
+
+Currently only works with hashes. 
 
 ## Installation
 
-npm install redisblue
+    npm install redisblue
+    
+You will need to configure keyspace notifications in Redis. See [Redis Notifications](https://redis.io/topics/notifications)
 
-## Code Example
+## Usage
 
 ```js
 var redisoptions = {}
@@ -18,7 +30,7 @@ redisoptions.host = "localhost"
 
 const redisblue = require("redisblue")(redisoptions)
  
-redisblue('product').then(function(items) {
+redisblue('namespace').then(function(items) {
   for (let i in items) {
     console.log(items[i].key)
   }
@@ -26,7 +38,7 @@ redisblue('product').then(function(items) {
 ```
 
 The items object will be immediately updated if the key in Redis is updated by any means.
-For a complet list of parameters that can be passed in redisoptions, see:  https://github.com/NodeRedis/node_redis#options-object-properties
+For a complet list of parameters that can be passed in redisoptions, see:  [node-redis options](https://github.com/NodeRedis/node_redis#options-object-properties)
 
 ## Motivation
 
