@@ -1,0 +1,26 @@
+{
+  "name": "redisblue",
+  "version": "1.0.1",
+  "description": "Object manager and synchronizer for Redis",
+  "main": "redisblue.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imnotknow/redisblue.git"
+  },
+  "keywords": [
+    "redis",
+    "synchronize"
+  ],
+  "author": "Rich Crabtree",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/imnotknow/redisblue/issues"
+  },
+  "dependencies": {
+    "redis": ">=2.6.2"
+  },
+  "homepage": "https://github.com/imnotknow/redisblue#readme"
+}

@@ -2,11 +2,14 @@
 
 const EventEmitter = require('events').EventEmitter;
 const redisclient  = require('./redisclient.js')
-var db = 1
  
-module.exports = function(namespace) {
-  var rdc = new redisclient(db)
-  var sub = new redisclient(db)
+module.exports = function(namespace,options) {
+  
+  options = options || {}
+  options.db = "1"
+  
+  var rdc = new redisclient(options)
+  var sub = new redisclient(options)
   
   return new Promise(function(resolve,reject) {
     var items = []
@@ -35,10 +38,10 @@ module.exports = function(namespace) {
   })
     
   function syncUpdates(items) {
-    sub.psubscribe('__keyspace@'+db+'__:'+namespace+':*');
+    sub.psubscribe('__keyspace@'+options.db+'__:'+namespace+':*');
     sub.on("pmessage", function (channel, message) {
       //~ console.log(channel,message)
-      var key = message.replace('__keyspace@'+db+'__:','')
+      var key = message.replace('__keyspace@'+options.db+'__:','')
       //console.log('update received for',key)
       rdc.hgetall(key, function(e,obj) {
         //console.log('syncing: ',key)                              
