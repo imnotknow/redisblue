@@ -48,6 +48,7 @@ module.exports = function(namespace,options) {
         let item = key.replace(namespace+':','')
         if (items[item]) {
           Object.assign(items[item],obj)
+          items[item].emit('dbupdate')
         }
       })
     })

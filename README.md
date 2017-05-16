@@ -13,7 +13,9 @@ Turns each object into an event emitter.
 
 Syncs all changes made to the DB by any means to the objects in memory.
 
-Currently only works with hashes. 
+Object emits an event on an update from the DB.
+
+Currently only works with hashes. If there is interest I will add other data types.
 
 ## Installation
 
@@ -33,6 +35,9 @@ const redisblue = require("redisblue")(redisoptions)
 redisblue('namespace').then(function(items) {
   for (let i in items) {
     console.log(items[i].key)
+    items[i].on('dbupdate',function() {
+      console.log('dbupdate',items[i].key)
+    })       
   }
 })
 ```
