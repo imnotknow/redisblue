@@ -7,7 +7,7 @@ Why go to the database asynchronously? Let the database update your object in me
 
 What this module does:
 
-Retrieves all records in a specified top level namespace returns an array of objects.
+Retrieves all records in a specified top level namespace and returns an array of objects.
 
 Turns each object into an event emitter.
 
