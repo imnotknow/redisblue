@@ -11,6 +11,7 @@ npm install redisblue
 
 ## Code Example
 
+```js
 const redisblue = require("redisblue")
  
 redisblue('products').then(function(items) {
@@ -18,6 +19,7 @@ redisblue('products').then(function(items) {
     console.log(items[i].key)
   }
 })
+```
 
 The items object will be immediately updated if the key in Redis is updated by any means..
 
