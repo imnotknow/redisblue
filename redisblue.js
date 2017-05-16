@@ -1,6 +1,6 @@
 'use strict';
 
-const EventEmitter = require('events').EventEmitter;
+const EventEmitter = require('events').EventEmitter
 const redisclient  = require('./redisclient.js')
  
 module.exports = function(namespace,options) {
@@ -15,7 +15,7 @@ module.exports = function(namespace,options) {
     var items = []
     rdc.keys(namespace+':*', function(e,keys){
       keys.sort()
-      var counter = 0;
+      var counter = 0
       for (let key of keys) {
         rdc.hgetall(key, function(e,obj) {                                       
           var name = key.replace(namespace+':','')
@@ -31,16 +31,16 @@ module.exports = function(namespace,options) {
             syncUpdates(items)
             resolve(items)
           }
-          counter++;  
+          counter++
         }) 
       }  
     })
   })
     
   function syncUpdates(items) {
-    sub.psubscribe('__keyspace@'+options.db+'__:'+namespace+':*');
+    sub.psubscribe('__keyspace@'+options.db+'__:'+namespace+':*')
     sub.on("pmessage", function (channel, message) {
-      //~ console.log(channel,message)
+      //console.log(channel,message)
       var key = message.replace('__keyspace@'+options.db+'__:','')
       //console.log('update received for',key)
       rdc.hgetall(key, function(e,obj) {
