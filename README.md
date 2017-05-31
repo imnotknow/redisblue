@@ -48,3 +48,5 @@ For a complet list of parameters that can be passed in redisoptions, see:  [node
 ## Motivation
 
 I wrote this module to prevent having to make messy async db calls. My application needs to be aware of the db state of numerous objects to make logical decisions based on those states and interact with other applications using the same sets of objects.
+
+
