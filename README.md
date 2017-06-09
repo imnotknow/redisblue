@@ -22,7 +22,7 @@ Currently only works with hashes. If there is interest I will add other data typ
     npm install redisblue
     
 You will need to configure keyspace notifications in Redis. See [Redis Notifications](https://redis.io/topics/notifications)
-
+ 
 ## Usage
 
 ```js
