@@ -25,6 +25,7 @@ module.exports = function(namespace,options) {
           Object.assign(items[name],EventEmitter.prototype)
           items[name].setMaxListeners(0)
           items[name].set = function(setobj) {
+            Object.assign(items[name], setobj)
             rdc.hmset(key,setobj)
           }
           if(counter == keys.length - 1) {
