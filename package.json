@@ -1,6 +1,6 @@
 {
   "name": "redisblue",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Object manager and synchronizer for Redis",
   "main": "redisblue.js",
   "scripts": {
