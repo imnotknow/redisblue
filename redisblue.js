@@ -1,6 +1,7 @@
 'use strict';
 
 const EventEmitter = require('events').EventEmitter
+const EventEmitter2 = require('eventemitter2').EventEmitter2
 const redisclient  = require('./redisclient.js')
  
 module.exports = function(namespace,options) {
@@ -19,10 +20,10 @@ module.exports = function(namespace,options) {
       for (let key of keys) {
         rdc.hgetall(key, function(e,obj) {                                       
           var name = key.replace(namespace+':','')
-          items[name] = {}
+          items[name] = new EventEmitter2({wildcard: true,maxListeners: 0})
           items[name].key = key
           Object.assign(items[name],obj)
-          Object.assign(items[name],EventEmitter.prototype)
+          //Object.assign(items[name],EventEmitter.prototype)
           items[name].setMaxListeners(0)
           items[name].set = function(setobj) {
             Object.assign(items[name], setobj)
